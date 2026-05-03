@@ -1,5 +1,4 @@
 import { Compass, Search, Library } from "lucide-react"
-import { NavLink } from "react-router-dom"
 import { NavItem } from './NavItem'
 import {
   Sidebar,
@@ -7,11 +6,9 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-// داتا المنيو عشان الكود يبقى أنضف
 const items = [
   {
     title: "Discovery",

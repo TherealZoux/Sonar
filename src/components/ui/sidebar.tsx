@@ -244,8 +244,9 @@ function Sidebar({
           className="flex size-full flex-col   group-data-[variant=floating]:shadow-sm group-data-[variant=floating]:ring-1 group-data-[variant=floating]:ring-sidebar-border"
         >
         {/* Logo*/}
-        <div className="p-[2rem] justify-center flex">
-          <img src="/Logo.svg" alt="Logo"  />
+        <div className="p-[2rem] justify-center flex justify-center items-center gap-[1px]">
+          <img src="/Logo.svg" alt="Logo"  /> 
+          <span className="text-[var(--color-sidebar-accent-foreground)] text-xl font-bold">Sonar</span>
         </div>
           {children}
         </div>
