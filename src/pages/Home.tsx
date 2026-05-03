@@ -1,13 +1,10 @@
 import { useRandomPodcasts, useTopCharts } from "@/hooks/usePodcasts.ts";
-import { useNavigate } from "react-router-dom";
 import CategorySection from "@/components/CategorySection";
 
 export default function Home() {
-  const { podcasts, randomloading } = useRandomPodcasts('tech', 10);
+  const { podcasts } = useRandomPodcasts('tech', 10);
   const { charts, chartLoading } = useTopCharts();
   console.log(charts);
-
-  const navigateTo = useNavigate();
 
   return (
     <>
