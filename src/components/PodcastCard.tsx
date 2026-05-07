@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge"
 
 
 interface PodcastCardProps {
@@ -7,27 +8,36 @@ interface PodcastCardProps {
   category?: string;
   episodes?: number;
   imageUrl?: string;
+  feedUrl?: string;
   id?: number;
+  className?:string;
 }
 
 export default function PodcastCard({
   title = "The Comedy Hour",
   author = "Podcast Host", 
   category = "Comedy",
-  episodes = 156,
+  episodes,
   imageUrl = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop" ,
-  id = 0
+  feedUrl= '',
+  id = 0,
+  className = ''
 }: PodcastCardProps) {
   
   const navigateTo = useNavigate()
+  console.log(feedUrl);
+  
 
   return (
-    <div className="min-w-[185px] flex flex-col gap-3 group cursor-pointer" onClick={()=> navigateTo(`/podcast/${id}`)}>
+    <div className={`min-w-[185px] flex flex-col gap-3 group cursor-pointer ${className}`} 
+     onClick={()=> navigateTo(`/podcast/${id}`)}>
       {/* Image Container */}
       <div className="w-full h-[180px] aspect-[4/5] overflow-hidden rounded-2xl m-auto">
         <img
           src={imageUrl}
           alt={title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full `:width: , transition-transform duration-300 group-hover:scale-105 object-cover"
         />
       </div>
@@ -47,7 +57,8 @@ export default function PodcastCard({
             {category.slice(0,8)}
           </span>
           <span className="text-sm text-zinc-500 dark:text-zinc-400">
-            {episodes} eps
+
+            {episodes ? `${episodes} eps` : <Badge>Top Show </Badge>}
           </span>
         </div>
       </div>

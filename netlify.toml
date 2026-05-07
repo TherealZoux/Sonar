@@ -3,3 +3,14 @@
   to = "https://rss.marketingtools.apple.com/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/itunes-api/*"
+  to = "https://itunes.apple.com/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

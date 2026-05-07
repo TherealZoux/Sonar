@@ -11,7 +11,7 @@ export default function Layout() {
           
           <AppSidebar />
 
-          <main style={{ flex: 1, padding: '20px', maxWidth: '85%'}}>
+          <main style={{ flex: 1, padding: '20px', maxWidth: '100%'}} className='lg:max-w-[85%]!'>
             <SidebarTrigger className="mb-4 md:hidden" />
             <Outlet />
           </main>
