@@ -8,6 +8,7 @@ interface Podcast {
   artworkUrl600: string;
   primaryGenreName: string;
   feedUrl: string;
+  genres: [];
 }
 
 export const useRandomPodcasts = (term: string = 'podcast', limit: number = 10) => {

@@ -23,13 +23,11 @@ export function SearchComponent() {
   const { result, searchLoader } = useSearch(searchTerm);
 
   const setResults = useSearchStore((state) => state.setResults);
-  const setloading = useSearchStore((state) => state.setLoading);
   const setTerm = useSearchStore((state) => state.setSearchTerm);
 
   const handleSearch = () => {
     setSearchTerm(inputValue);
     setTerm(searchTerm)
-    setloading(searchLoader)
   };
   useEffect(() => {
     setResults(result || []);

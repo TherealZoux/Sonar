@@ -23,7 +23,7 @@ export default defineConfig({
         return;
       }
 
-      const urlParam = new URL(req.url, `http://${req.headers.host}`).searchParams.get('url');
+      const urlParam = new URL(String(req?.url), `http://${req.headers.host}`).searchParams.get('url');
       if (!urlParam) return next();
 
       try {
@@ -46,7 +46,7 @@ export default defineConfig({
         res.setHeader('Content-Type', 'text/xml');
         res.end(xml);
         
-      } catch (error) {
+      } catch (error: any) {
         console.error('Proxy Error for URL:', urlParam, '->', error.message);
         res.statusCode = 500;
         // Now this error will actually show up in your frontend console!
