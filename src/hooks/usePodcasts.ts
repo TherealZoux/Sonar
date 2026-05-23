@@ -8,22 +8,22 @@ interface Podcast {
   artworkUrl600: string;
   primaryGenreName: string;
   feedUrl: string;
+  loading: boolean;
   genres: [];
 }
 
 export const useRandomPodcasts = (term: string = 'podcast', limit: number = 10) => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
-  const [randomLoading, setRandomLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
-        setRandomLoading(true);
+        setLoading(true);
         const response = await fetch(
-          `https://itunes.apple.com/search?term=${term}&entity=podcast&limit=${limit}`
+          `/itunes-api/search?term=${term}&entity=podcast&limit=${limit}?&country=EG`
         );
-
         if (!response.ok) throw new Error('Failed to fetch podcasts');
 
         const data = await response.json();
@@ -31,24 +31,24 @@ export const useRandomPodcasts = (term: string = 'podcast', limit: number = 10) 
       } catch (err: any) {
         setError(err.message || 'Something went wrong');
       } finally {
-        setRandomLoading(false);
+        setLoading(false);
       }
     };
 
     fetchPodcasts();
   }, []);
 
-  return { podcasts, randomLoading, error };
+  return { podcasts, loading, error };
 };
 export const useTopCharts = () => {
-  const [charts, setCharts] = useState<any[]>([]);
-  const [chartLoading, setChartLoading] = useState<boolean>(true);
+  const [podcasts, setPodcasts] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCharts = async () => {
       try {
-        setChartLoading(true);
+        setLoading(true);
 
         const targetUrl = '/apple-api/api/v2/eg/podcasts/top/10/podcasts.json';
 
@@ -59,18 +59,19 @@ export const useTopCharts = () => {
         }
 
         const data = await response.json();
-        setCharts(data.feed.results); //
+        setPodcasts(data.feed.results); //
       } catch (err: any) {
         setError(err.message || 'Something went wrong');
       } finally {
-        setChartLoading(false);
+        setLoading(false);
       }
     };
 
     fetchCharts();
   }, []);
 
-  return { charts, chartLoading, error };
+  return { podcasts, loading, error };
+
 };
 
 export function usePodcast(id: number) {
@@ -89,36 +90,36 @@ export function usePodcast(id: number) {
         const data = await response.json();
         setPodcast(data.results[0])
       } catch (err: any) {
-          setError(err.message)
+        setError(err.message)
       }
     }
     fetchPodcast()
   }, [id])
-  return {podcast, podcastLoader, error}
+  return { podcast, podcastLoader, error }
 }
 
 
-export function useSearch(term:string){
+export function useSearch(term: string) {
   const [result, setResult] = useState<any>()
   const [searchLoader, setSearchLoader] = useState<boolean>()
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    if (!term || term.length === 0 ) return;
+    if (!term || term.length === 0) return;
     const fetchPodcast = async () => {
       try {
         setSearchLoader(true)
-        const response = await fetch(`https://itunes.apple.com/search?term=${term}`)
+        const response = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=podcast&entity=podcast`)
         if (!response.ok) {
           throw new Error(`Error ${response.status}`);
         }
         const data = await response.json();
         setResult(data.results)
       } catch (err: any) {
-          setError(err.message)
+        setError(err.message)
       }
     }
     fetchPodcast()
   }, [term])
-  return {result, searchLoader, error}
-  
+  return { result, searchLoader, error }
+
 }

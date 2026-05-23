@@ -27,7 +27,7 @@ export default function PodcastHeader({ path = "", name = "" }) {
           const displayText = (isLast && name) ? name : formatSegment(segment);
           const isClickable = segment.toLowerCase() !== 'podcast';
           return (
-              <BreadcrumbItem>
+              <BreadcrumbItem key={index}>
                 {isLast ? (
                   <BreadcrumbPage>{displayText}</BreadcrumbPage>
                 ) : isClickable ? (

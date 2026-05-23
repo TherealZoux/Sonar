@@ -1,6 +1,8 @@
 import { SearchComponent } from "@/components/SearchCoponent"
 import { useSearchStore } from '@/stores/useSearchStore';
 import PodcastCard from "@/components/PodcastCard";
+import CategoryCard from '@/components/CategoryCard.jsx'
+import Podcast from "./Podcast";
 export default function Search() {
   const results = useSearchStore((state: any) => state.results);
 
@@ -9,7 +11,7 @@ export default function Search() {
       <section className="mt-8">
         <SearchComponent />
       </section>
-      <div className="flex flex-wrap gap-10 mt-12">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,250px),1fr))] gap-10 mt-12">
         {
           results.map((item : any) => (
             <PodcastCard
@@ -23,7 +25,7 @@ export default function Search() {
               id={item?.collectionId ?? item?.id}
               feedUrl={item?.feedUrl}
               category={item?.primaryGenreName}
-
+              price={item.collectionPrice}
                 episodes={item?.trackCount}
               className="flex-1 max-w-fit"
             />
