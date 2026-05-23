@@ -19,10 +19,10 @@ export default function PodcastCard({
   title = "The Comedy Hour",
   author = "Podcast Host",
   category = "Comedy",
+  episodes = 0,
   imageUrl = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop",
   id = 0,
   className = '',
-  price = 0
 }: PodcastCardProps) {
 
   const navigateTo = useNavigate()
@@ -57,7 +57,7 @@ export default function PodcastCard({
           </span>
 
           <span className="text-[10px] md:text-sm text-zinc-500 dark:text-zinc-400 whitespace-nowrap shrink-0">
-              <Badge className="text-[9px] md:text-xs py-0 px-1.5 md:px-2.5">{price + '$' || "free"}</Badge>
+                          {episodes ? `${episodes} eps` : <Badge>Top Show </Badge>}
           </span>
         </div>
       </div>
