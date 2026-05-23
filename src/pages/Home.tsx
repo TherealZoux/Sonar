@@ -1,6 +1,4 @@
 import CategorySection from "@/components/CategorySection";
-import { Button } from "@/components/ui/button";  
-import { NavLink } from "react-router-dom";
 export default function Home() {
   
   return (

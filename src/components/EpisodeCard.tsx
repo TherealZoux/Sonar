@@ -5,7 +5,7 @@ export interface Episode {
   id: string;
   title: string;
   description: string;
-  audioUrl: string | null;
+  audioUrl: string ;
   duration: string;
   publishedDate: string;
   episodeImage: string;
@@ -17,7 +17,7 @@ interface EpisodeCardProps {
   author: string|undefined;
 }
 
-export default function EpisodeCard({ episode, author }: EpisodeCardProps) {
+export default function EpisodeCard({ episode, author}: EpisodeCardProps) {
   const formattedDate = new Date(episode.publishedDate).toLocaleDateString()
 
   const playEpisode = usePlayerStore((state) => state.playEpisode)
@@ -57,7 +57,7 @@ export default function EpisodeCard({ episode, author }: EpisodeCardProps) {
 
         {episode.audioUrl && (
           <div className='bg-[var(--color-sidebar-accent-foreground)] w-fit p-5 rounded-full text-white cursor-pointer h-fit'
-          onClick={() => playEpisode({ ...episode, author: author })}           >
+          onClick={() => playEpisode({...episode, author: author})}>
             <Play />
           </div>
         )}

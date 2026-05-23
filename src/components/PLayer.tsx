@@ -57,11 +57,10 @@ export default function PlayerComponent() {
   const { currentEpisode, playing, setPlaying } = usePlayerStore();
 
   const [current, setCurrent] = useState(0);
-  const [duration, setDuration] = useState(0); // Now driven by actual audio metadata
+  const [duration, setDuration] = useState(0); 
   const [volume, setVolume] = useState(60);
   const [speed, setSpeed] = useState(1);
   
-  // Ref to the actual HTML5 audio element
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Sync Play/Pause state with the audio element
@@ -88,17 +87,14 @@ export default function PlayerComponent() {
 useEffect(() => {
   if (!currentEpisode) return;
 
-  // Set the metadata that shows up in the browser/OS media controller
   navigator.mediaSession.metadata = new MediaMetadata({
     title: currentEpisode.title,
-    artist: currentEpisode.author, // Ensure your Episode interface has this
+    artist: currentEpisode?.author, 
     album: "Sonar Podcasts",
     artwork: [
       { src: currentEpisode.episodeImage, sizes: '512x512', type: 'image/png' }
     ]
   });
-
-  // Handle media key actions (play/pause/skip from keyboard or OS)
   navigator.mediaSession.setActionHandler('play', () => setPlaying(true));
   navigator.mediaSession.setActionHandler('pause', () => setPlaying(false));
   navigator.mediaSession.setActionHandler('seekbackward', () => skipBackward());
@@ -158,7 +154,6 @@ useEffect(() => {
     setSpeed(SPEEDS[(idx + 1) % SPEEDS.length]);
   };
 
-  // Do not render if no episode is active
   if (!currentEpisode) return null;
 
   const progress = duration > 0 ? (current / duration) * 100 : 0;

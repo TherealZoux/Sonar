@@ -5,9 +5,10 @@ export interface Episode {
   title: string;
   description: string;
   audioUrl: string;
-  duration: string; // "00:37:17"
+  duration: string; 
   publishedDate: string;
   episodeImage: string;
+  author: string|undefined;
 }
 
 interface PlayerState {

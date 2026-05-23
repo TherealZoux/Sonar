@@ -19,9 +19,7 @@ export default function PodcastCard({
   title = "The Comedy Hour",
   author = "Podcast Host",
   category = "Comedy",
-  episodes,
   imageUrl = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=400&auto=format&fit=crop",
-  feedUrl = '',
   id = 0,
   className = '',
   price = 0

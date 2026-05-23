@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { usePodcast } from "@/hooks/usePodcasts";
 import { usePodcastFeed } from '@/hooks/usePodcastFeed';
-import SkeletonCard from "@/components/SkeletonCard";
 import EpisodeCard from '@/components/EpisodeCard';
 import PodcastHeader from '@/components/PodcastHeader';
 import { useLocation } from 'react-router-dom';

@@ -1,8 +1,6 @@
 import { SearchComponent } from "@/components/SearchCoponent"
 import { useSearchStore } from '@/stores/useSearchStore';
 import PodcastCard from "@/components/PodcastCard";
-import CategoryCard from '@/components/CategoryCard.jsx'
-import Podcast from "./Podcast";
 export default function Search() {
   const results = useSearchStore((state: any) => state.results);
 
