@@ -162,7 +162,7 @@ useEffect(() => {
   return (
     <div
       style={{ fontFamily: "'DM Sans', sans-serif" }}
-      className="w-full bg-[#F5F3F0] border-t border-[#E2DDD8] px-6 py-3 flex items-center gap-6"
+      className="w-full bg-[#F5F3F0] border-t border-[#E2DDD8] px-6 py-3 flex items-center gap-6 flex-wrap"
     >
       {/* HIDDEN AUDIO ELEMENT */}
       <audio
