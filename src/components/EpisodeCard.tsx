@@ -32,8 +32,8 @@ export default function EpisodeCard({ episode, author}: EpisodeCardProps) {
         className="w-24 h-24 rounded-md object-cover shadow-sm shrink-0"
       />
 
-      <div className="flex-1 flex flex-row gap-2 justify-between min-w-0 ">
-       <div>
+      <div className="flex-1 flex flex-row gap-2 justify-between min-w-0 flex-wrap ">
+       <div className='max-w-full'>
         <div className="flex justify-between items-start gap-4">
           <h3 className="text-lg font-semibold text-gray-900 leading-tight truncate">
             {episode.title}
@@ -51,7 +51,7 @@ export default function EpisodeCard({ episode, author}: EpisodeCardProps) {
 
         <div
           className="text-gray-600 text-sm line-clamp-2 leading-relaxed"
-          dangerouslySetInnerHTML={{ __html: episode.description || '' }}
+          dangerouslySetInnerHTML={{ __html: episode.description.slice(0,80) + '...' || '' }}
         />
        </div>
 

@@ -34,7 +34,7 @@ export default function FollowShareComponent({ podcastTitle = "this podcast" }) 
     }
   };
   return (
-    <section className="w-[30rem] flex flex-col p-10 gap-8">
+    <section className="w-full flex flex-col p-10 gap-8">
       <Button className="bg-[var(--color-sidebar-accent-foreground)] text-md p-6 ">
         <UserPlus className="w-[2rem]! h-[1.5rem]!" />
         Follow Podcast

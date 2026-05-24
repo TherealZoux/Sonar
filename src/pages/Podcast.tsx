@@ -66,7 +66,7 @@ export default function Podcast() {
       </section>
 
       {!loading && data?.episodes  && (
-        <section className='flex flex-row '>
+        <section className='flex flex-col-reverse lg:flex-row '>
           <section className="flex flex-col gap-4 min-w-[70%]!">
             <h2 className="text-2xl font-semibold mb-2">Episodes ({data.episodes.length})</h2>
 

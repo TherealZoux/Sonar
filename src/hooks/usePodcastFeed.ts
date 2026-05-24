@@ -17,9 +17,9 @@ export function usePodcastFeed(feedUrl: any) {
 
       try {
         // dev mode proxy
-        // const proxyUrl = `/api/rss?url=${encodeURIComponent(feedUrl)}`;
+        const proxyUrl = `/api/rss?url=${encodeURIComponent(feedUrl)}`;
         // production mode proxy
-        const proxyUrl = `/.netlify/functions/rss?url=${encodeURIComponent(feedUrl)}`;
+        // const proxyUrl = `/.netlify/functions/rss?url=${encodeURIComponent(feedUrl)}`;
 
         const response = await fetch(proxyUrl);
         if (!response.ok) throw new Error("Failed to fetch RSS feed");
