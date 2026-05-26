@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎧 Sonar - Podcast Platform
 
-Currently, two official plugins are available:
+Sonar is a modern, responsive podcast web application built with React, TypeScript, and Vite. It allows users to search for their favorite podcasts, explore episodes, adjust playback settings, and manage audio seamlessly across different devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🚀 **Live Demo:** [sonnar.netlify.app](https://sonnar.netlify.app)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Features
 
-## Expanding the ESLint configuration
+- **Podcast Search & Discovery:** Integrated with Apple iTunes API to browse and search for top podcasts.
+- **Dynamic Routing & Pages:** Structured multi-page application handling separate views for search, podcasts, and discovery.
+- **Advanced Audio Player:** Dynamic layout controller with support for playback speed adjustment, volume controls, responsive mobile views, and global player layout.
+- **Custom React Hooks:** Dedicated custom hooks for decoupled logic, keeping the components clean and reusable.
+- **Serverless CORS Proxy:** Uses Netlify Functions backend proxy to bypass client-side CORS issues securely when fetching external RSS feeds.
+- **Modern UI/UX:** A clean, grid-based interface built using Tailwind CSS and components powered by Shadcn UI.
+- **Global State Management:** High-performance, lightweight audio and episode state handling using Zustand stores.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React, TypeScript, Vite
+- **Styling & UI:** Tailwind CSS, Shadcn UI
+- **State Management:** Zustand
+- **Deployment & Serverless:** Netlify (Netlify Functions)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📁 Project Structure
+
+```text
+├── netlify/
+│   └── functions/
+│       └── rss.js          # Serverless function to proxy external RSS feeds (bypasses CORS)
+├── src/
+│   ├── assets/           # Media files and global assets
+│   ├── components/       # Reusable UI components (Shadcn & custom elements)
+│   ├── hooks/            # Custom React hooks for global logic
+│   ├── layouts/          # Main application layouts (including the player container)
+│   ├── lib/              # Core utility functions and Shadcn configuration
+│   ├── pages/            # View components (Home, Search, Podcast Details)
+│   ├── stores/           # Zustand stores for global audio player state
+│   ├── App.css           # Custom styles for the core layout
+│   ├── App.tsx           # Application entry layout
+│   ├── index.css         # Global Tailwind directives
+│   └── main.tsx          # DOM initialization
+├── netlify.toml          # Netlify configuration file
+├── tailwind.config.ts    # Tailwind CSS styling configuration
+└── vite.config.ts        # Vite environment configurations
+````
+
+## 🚀 Getting Started
+
+Follow these steps to set up the project locally:
+
+### 1. Clone the Repository
+
+Bash
+
+```
+git clone [https://github.com/TherealZoux/Sonar.git](https://github.com/TherealZoux/Sonar.git)
+cd Sonar
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Bash
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm install
+```
+
+### 4. Run the Development Server
+
+To run both the Vite frontend and Netlify serverless functions simultaneously:
+
+Bash
+
+```
+npm run dev
+```
+
+_(Alternatively, run `npm run dev` for frontend development only)._
+
+## 🌐 How CORS Bypass Works
+
+Since standard browsers block client-side fetch requests to external RSS feeds due to Same-Origin policy (CORS), Sonar utilizes a Serverless Proxy architecture:
+
+1. The frontend dispatches a request to the Netlify endpoint (`/api/rss`).
+    
+2. The serverless function `netlify/functions/rss.js` fetches the raw XML feed on the server-side, bypassing browser constraints.
+    
+3. The serverless backend returns the data safely back to the user interface.
