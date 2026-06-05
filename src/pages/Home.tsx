@@ -16,7 +16,7 @@ export default function Home() {
 
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % topCharts.length);
-    }, 10000)
+    }, 5000)
 
     return () => clearInterval(timer);
   }, [topCharts.length]);
