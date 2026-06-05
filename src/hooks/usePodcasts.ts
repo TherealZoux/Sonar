@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { usePodcastStore } from '@/stores/usePodcastStore';
 
 interface Podcast {
   collectionId: number;
@@ -12,10 +13,14 @@ interface Podcast {
   genres: [];
 }
 
+
+
+
 export const useRandomPodcasts = (term: string = 'podcast', limit: number = 10) => {
   const [podcasts, setPodcasts] = useState<Podcast[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const podcastStore: any = usePodcastStore()
 
   useEffect(() => {
     const fetchPodcasts = async () => {
@@ -28,6 +33,7 @@ export const useRandomPodcasts = (term: string = 'podcast', limit: number = 10) 
 
         const data = await response.json();
         setPodcasts(data.results);
+        podcastStore.setPodcasts(data.results)
       } catch (err: any) {
         setError(err.message || 'Something went wrong');
       } finally {
@@ -44,6 +50,7 @@ export const useTopCharts = () => {
   const [podcasts, setPodcasts] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const podcastStore: any = usePodcastStore()
 
   useEffect(() => {
     const fetchCharts = async () => {
@@ -60,6 +67,7 @@ export const useTopCharts = () => {
 
         const data = await response.json();
         setPodcasts(data.feed.results); //
+        podcastStore.setTopCharts(data.feed.results)
       } catch (err: any) {
         setError(err.message || 'Something went wrong');
       } finally {

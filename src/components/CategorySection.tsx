@@ -57,7 +57,7 @@ export default function CategorySection({ category, title, isCharts}: Props) {
                 author={podcast?.artistName ?? podcast.author}
                 imageUrl={
                   podcast?.artworkUrl600 ??
-                  podcast?.artworkUrl100?.replace(/\d+x\d+/, '600x600')
+                  podcast?.artworkUrl100?.replace(/\d+x\d+/, '400x400')
                 }
                 category={
                   (typeof podcast?.genres?.[0] === 'string'

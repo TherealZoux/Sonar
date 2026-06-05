@@ -2,41 +2,43 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-// الستايل الأساسي
 import './index.css';
 
-// الـ Layout الأساسي
 import Layout from './layouts/main';
 
-// الصفحات
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Library from './pages/Library';
 import NotFound from './pages/NotFound';
 import Podcast from './pages/Podcast';
+import Category from './pages/Category';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <NotFound />, 
+    errorElement: <NotFound />,
     children: [
-      { 
-        index: true, 
-        element: <Home /> 
+      {
+        index: true,
+        element: <Home />
       },
-      { 
-        path: "search", 
-        element: <Search /> 
-      }, 
-      { 
-        path: "library", 
-        element: <Library /> 
+      {
+        path: "search",
+        element: <Search />
       },
-       { 
-        path: "podcast/:id", 
-        element: <Podcast /> 
+      {
+        path: "library",
+        element: <Library />
       },
+      {
+        path: "podcast/:id",
+        element: <Podcast />
+      },
+      {
+        path: "category/:id",
+        element: <Category />
+      }
     ],
   },
 ]);
