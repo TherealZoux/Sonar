@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/apple-api/:path*",
+      "destination": "https://rss.marketingtools.apple.com/:path*"
+    },
+    {
+      "source": "/itunes-api/:path*",
+      "destination": "https://itunes.apple.com/:path*"
+    }
+  ]
+}

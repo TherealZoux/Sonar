@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const podcastStore: any = usePodcastStore();
-  const topCharts = podcastStore.topCharts;
+  const topCharts = podcastStore?.topCharts;
   const [activeIndex, setActiveIndex] = useState(0);
   const activePodcast = topCharts[activeIndex];
   const navigateTo = useNavigate();
