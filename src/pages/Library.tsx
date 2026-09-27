@@ -1,4 +1,4 @@
-export default function Library(){
+export default function Library() {
   return (
     <div>Library</div>
   )
