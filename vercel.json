@@ -7,6 +7,11 @@
     {
       "source": "/itunes-api/:path*",
       "destination": "https://itunes.apple.com/:path*"
+    },
+     {
+      "source": "/((?!api/|apple-api/|itunes-api/).*)",
+      "destination": "/index.html"
     }
+
   ]
 }
